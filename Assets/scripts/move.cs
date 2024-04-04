@@ -24,7 +24,8 @@ public class Move : MonoBehaviour
             
             for (int i = 0; i < wheel.Length; i++)
             {
-                wheel[i].motorTorque = torque;
+                wheel[i].motorTorque = wheel[i].motorTorque+1*Time.deltaTime;//adds +1 on a capped frame rate
+                
             }
             
         }

@@ -9,7 +9,7 @@ public class controller : MonoBehaviour
     [SerializeField] Transform frontleftransform;
     [SerializeField] Transform backrightransform;
     [SerializeField] Transform backleftransform;
-    [SerializeField] private float acceleration = 500;
+    [SerializeField] private float acceleration = 600;
     [SerializeField] private float breakingforce = 300;
     [SerializeField] private float maxTurnAngle = 15;
     [SerializeField] private float currentAcceleration = 0;
@@ -21,7 +21,11 @@ public class controller : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        currentAcceleration = acceleration * Input.GetAxis("Vertical");
+        if (Input.GetAxis("Vertical") > 0)
+        { 
+            currentAcceleration = acceleration * Input.GetAxis("Vertical") * Time.deltaTime;
+            acceleration += 60;
+        }
         if (Input.GetKey(KeyCode.Space)) 
         {
             currentBreakForce = breakingforce;
@@ -34,6 +38,7 @@ public class controller : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             wheel[i].motorTorque = currentAcceleration;
+            Debug.Log("speed " + wheel[i].motorTorque);
         }
         for (int i = 0; i < 2; i++) 
         {

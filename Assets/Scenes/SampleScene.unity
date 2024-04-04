@@ -994,6 +994,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sport_car_1_custom
       objectReference: {fileID: 0}
+    - target: {fileID: 155862, guid: 19c15655c6ee95746b4d842244c9d27a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 462168, guid: 19c15655c6ee95746b4d842244c9d27a, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -1169,6 +1173,7 @@ GameObject:
   - component: {fileID: 1093882676}
   - component: {fileID: 1093882675}
   - component: {fileID: 1093882674}
+  - component: {fileID: 1093882678}
   m_Layer: 0
   m_Name: checkpoint one
   m_TagString: Untagged
@@ -1191,7 +1196,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1255,13 +1260,56 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093882673}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.017428448, y: -0.8341184, z: -0.026332125, w: 0.5506807}
+  m_LocalRotation: {x: -0.01742845, y: -0.8341185, z: -0.026332127, w: 0.55068076}
   m_LocalPosition: {x: 302, y: 5, z: 269.79}
-  m_LocalScale: {x: 190, y: 10, z: 1}
+  m_LocalScale: {x: 189.99995, y: 10, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1335736273}
+  m_LocalEulerAnglesHint: {x: -3.619, y: -113.135, z: 0.004}
+--- !u!114 &1093882678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093882673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e04d61232556b4c9ad414cb5968019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1093926035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1093926036}
+  m_Layer: 0
+  m_Name: checkpoint manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1093926036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093926035}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1052.6458, y: -477.64355, z: 578.26483}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -3.619, y: -113.135, z: 0.004}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1311965014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,6 +1488,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 612589122}
+  - {fileID: 1093882677}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1450195169
@@ -1938,7 +1987,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2465,7 +2514,7 @@ SceneRoots:
   - {fileID: 1531571473}
   - {fileID: 1085192617}
   - {fileID: 1335736273}
-  - {fileID: 1093882677}
   - {fileID: 1786985393}
   - {fileID: 105105324}
   - {fileID: 2064176415}
+  - {fileID: 1093926036}
