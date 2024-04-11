@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerval;
+    [SerializeField] controller odometerhud;
+    [SerializeField] TextMeshProUGUI odameterval;
     float timerValue = 0;
     
     // Start is called before the first frame update
@@ -20,5 +22,7 @@ public class HUD : MonoBehaviour
     {
         timerValue += Time.unscaledDeltaTime;
         timerval.text = timerValue.ToString();
+        odameterval.text += odometerhud.getAcceleration().ToString();
     }
+
 }
