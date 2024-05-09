@@ -22,7 +22,8 @@ public class HUD : MonoBehaviour
     {
         timerValue += Time.unscaledDeltaTime;
         timerval.text = timerValue.ToString();
-        odameterval.text += odometerhud.getAcceleration().ToString();
+        int odomspeed = (int) odometerhud.getAcceleration();//cacheing(storing) value of getacceleration into odomspeed and typecasting into integers because get acceleration is a float
+        odameterval.text = odomspeed.ToString()+"MPH";//adding mph to the end of the odometer ui to show units of speed
     }
 
 }
