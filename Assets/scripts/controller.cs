@@ -1,10 +1,13 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class controller : MonoBehaviour
 {
+    [SerializeField] private Quaternion ogrotate;
     [SerializeField] public WheelCollider[] wheel = new WheelCollider[4];//sets up class for the wheel collider
     [SerializeField] Transform frontrightransform;//sets up this class
     [SerializeField] Transform frontleftransform;//sets up this class
@@ -22,10 +25,17 @@ public class controller : MonoBehaviour
     [SerializeField] private float currentTurnAngle = 0;// sets the current turn angle
     void Start()
     {
+        ogrotate = transform.rotation;
         acceleration = 66000;
     }
+    //if the cars current rotation is < -10 AND we click a key on our keyboard we want to 
+    //• Reset the cars current rotation to be equal to our ogrotate variable.
+    //if you need to grab the current rotation use transform.rotate
+    //bonus hint, you only need to check the z value of the cars current rotation so you want to compare if it's z value is < -10
     private void FixedUpdate()
+
     {
+        
         if (Input.GetAxis("Vertical") > 0)//reading input data from controller
         {
             currentAcceleration = acceleration * Input.GetAxis("Vertical") * Time.deltaTime;//keeps acceleration addition at a framerate cap
@@ -64,6 +74,16 @@ public class controller : MonoBehaviour
         Updatewheel(wheel[3], backleftransform);//same thing
 
     }
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.F))
+        {
+            if (transform.rotation.z <= -10 || transform.rotation.z >= 10)//if z axis of rotation is less than -10 and f key is pressed,
+            {
+                transform.eulerAngles = new Vector3(0,0,0);//current rotation = 0(origanl/starting rotation)
+            }
+        }
+    }
     public void Updatewheel(WheelCollider wheelCollider, Transform transform)
     {//getting wheel collider state
         Vector3 position; //to rotate in a certain position
@@ -80,3 +100,4 @@ public class controller : MonoBehaviour
     }
     public float grabAccel() => acceleration;
     }
+
