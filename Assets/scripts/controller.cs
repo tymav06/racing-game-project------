@@ -23,6 +23,11 @@ public class controller : MonoBehaviour
     [SerializeField] private float currentAcceleration = 0;//sets the current acceleration
     [SerializeField] private float currentBreakForce = 0;//sets the current break force
     [SerializeField] private float currentTurnAngle = 0;// sets the current turn angle
+    RaycastHit hit;
+
+    public GameObject carRoof;
+    public float distanceToCheck;
+    public LayerMask layerMask;
     void Start()
     {
         ogrotate = transform.rotation;
@@ -35,7 +40,38 @@ public class controller : MonoBehaviour
     private void FixedUpdate()
 
     {
+        distanceToCheck = 4f;
+        if (checkifcarisflippingyouoff()==true) 
+            {
+            checkifcarisflippingyouoff();
+            }
+        else { return; }
         
+
+    }
+
+    private bool checkifcarisflippingyouoff()
+    {
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(carRoof.transform.position, transform.TransformDirection(Vector3.up), out hit, distanceToCheck, layerMask))
+        {
+            Debug.DrawRay(carRoof.transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.blue);
+            Debug.Log("Did Hit");
+            return true;
+        }
+        else
+        {
+            Debug.DrawRay(carRoof.transform.position, transform.TransformDirection(Vector3.up) * 1000, Color.white);
+            Debug.Log("Did not Hit");
+            return false;
+        }
+    }
+
+    private void Update()
+
+ {
+
+
         if (Input.GetAxis("Vertical") > 0)//reading input data from controller
         {
             currentAcceleration = acceleration * Input.GetAxis("Vertical") * Time.deltaTime;//keeps acceleration addition at a framerate cap
@@ -74,16 +110,9 @@ public class controller : MonoBehaviour
         Updatewheel(wheel[3], backleftransform);//same thing
 
     }
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.F))
-        {
-            if (transform.rotation.z <= -10 || transform.rotation.z >= 10)//if z axis of rotation is less than -10 and f key is pressed,
-            {
-                transform.eulerAngles = new Vector3(0,0,0);//current rotation = 0(origanl/starting rotation)
-            }
-        }
-    }
+    
+    
+      
     public void Updatewheel(WheelCollider wheelCollider, Transform transform)
     {//getting wheel collider state
         Vector3 position; //to rotate in a certain position
@@ -99,5 +128,8 @@ public class controller : MonoBehaviour
  
     }
     public float grabAccel() => acceleration;
+
+
+
     }
 
